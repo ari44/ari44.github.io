@@ -1,4 +1,30 @@
 <html>
-<head></head>
-<body></body>
+<head>
+<link rel="manifest" href="/manifest.json"/>
+</head>
+<body>
+<script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCf84UkRYYOj4PYKjIIqFjdSHh9PR6D5Lw",
+    authDomain: "push-test-212705.firebaseapp.com",
+    databaseURL: "https://push-test-212705.firebaseio.com",
+    projectId: "push-test-212705",
+    storageBucket: "push-test-212705.appspot.com",
+    messagingSenderId: "1004221426375"
+  };
+  firebase.initializeApp(config);
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/serviceworker.js').then(function(reg) {
+        reg.pushManager.subscribe({userVisibleOnly: true}).then(function(sub) {
+          console.log(sub.endpoint);
+        });
+    }).catch(function(error) {
+        console.log(error);
+    });
+}
+</script></body>
 </html>
