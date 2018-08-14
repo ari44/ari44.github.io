@@ -5,10 +5,10 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('push', function(event) {
-    const message = event.data ? event.data.text() : '(ÅEÅÕÅE)';
+    let json = event.data.json();
     event.waitUntil(
-        self.registration.showNotification('Push Received', {
-            body: message,
+        self.registration.showNotification(json.notification.title, {
+            body: json.notification.body,
             tag: 'push-notification-tag' 
         })
     );
